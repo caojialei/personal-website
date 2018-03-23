@@ -1,5 +1,7 @@
 <template>
-  <div class="article-detail">文章详情页</div>
+  <div>
+    
+  </div>
 </template>
 <script>
 

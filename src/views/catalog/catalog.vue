@@ -1,5 +1,5 @@
 <template>
-  <div>萌萌专属页面</div>
+  <div class="catalog-page page">可视电话发快递回复</div>
 </template>
 <script>
 

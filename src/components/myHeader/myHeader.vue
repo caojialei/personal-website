@@ -4,9 +4,7 @@
       <div class="website-name">黄志鹏Kira</div>
       <el-menu mode="horizontal" :default-active="$route.path" class="my-header-nav"  @select="handleSelect">
         <el-menu-item index="/index"><router-link to="/index">首页</router-link></el-menu-item>
-        <el-menu-item index="/articleDetail"><router-link to="/articleDetail">文章</router-link></el-menu-item>
-        <el-menu-item index="/tools"><router-link to="/tools">小工具</router-link></el-menu-item>
-        <el-menu-item index="/pet"><router-link to="/pet">萌宠</router-link></el-menu-item>
+        <el-menu-item index="/about"><router-link to="/about">关于</router-link></el-menu-item>
       </el-menu>
     </div>
   </div>
@@ -38,18 +36,21 @@
 </script>
 <style lang="scss">
   .my-header{
+    height: 80px;
     position: relative;
+    border-bottom: 1px solid #f9f9f9;
     .my-header-container{
-      max-width: 1200px;
+      max-width: 1150px;
       margin: 0 auto;
-      padding: 0 10px;
-      border-bottom: 1px solid #e7e7e7;
+      padding: 0 15px;
       overflow: hidden;
       .website-name{
         float: left;
-        height: 60px;
-        line-height:60px;
+        height: 80px;
+        line-height:80px;
         font-size: 22px;
+        font-weight: 600;
+        color: #333;
       }
       .my-header-nav{
         float: right;
@@ -57,14 +58,17 @@
         li{
           padding: 0;
           font-size: 16px;
-          line-height: 60px;
+          height:40px;
+          line-height: 40px;
           color: #333;
+          margin-left: 30px;
+          margin-top: 20px;
           &.is-active{
-            border-color: #e54e53;
+            border-bottom: 1px solid #999;
           }
           a{
             display: block;
-            padding:0 40px;
+            padding:0;
           }
         }
       }

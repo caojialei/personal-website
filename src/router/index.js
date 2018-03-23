@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/views/index/index'
-import pet from '@/views/pet/pet'
-import articleDetail from '@/views/articleDetail/articleDetail'
-import tools from '@/views/tools/tools'
+import about from '@/views/about/about'
+import catalog from '@/views/catalog/catalog'
 
 Vue.use(Router)
 
@@ -18,16 +17,12 @@ export default new Router({
       component: index
     },
     {
-      path: '/pet',
-      component: pet
+      path: '/about',
+      component: about
     },
     {
-      path: '/articleDetail',
-      component: articleDetail
-    },
-    {
-      path: '/tools',
-      component: tools
+      path: '/catalog',
+      component: catalog
     }
   ]
 })

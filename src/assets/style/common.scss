@@ -7,7 +7,7 @@ body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, l
   border: none;
   color: #333;
   font-weight: normal;
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;
   box-sizing: border-box;
   -webkit-tap-highlight-color:transparent;
   -webkit-font-smoothing: antialiased;
@@ -15,8 +15,18 @@ body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, l
     outline: none;
   }
 }
+
+@font-face {
+  font-family: 'iconfont';  /* project id 602787 */
+  src: url('//at.alicdn.com/t/font_602787_gnmblytdnp7j5rk9.eot');
+  src: url('//at.alicdn.com/t/font_602787_gnmblytdnp7j5rk9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_602787_gnmblytdnp7j5rk9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_602787_gnmblytdnp7j5rk9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_602787_gnmblytdnp7j5rk9.svg#iconfont') format('svg');
+}
+
 *{font-size: 16px}
-.page-container{
-  max-width: 1200px;
+.page{
+  max-width: 1150px;
   margin: 0 auto;
 }

@@ -4,7 +4,10 @@
       "modules": false,
       "targets": {
         "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
-      }
+      },
+      "ignore": [
+        "./src/assets/js/mui.js"
+      ]
     }],
     "stage-2"
   ],
