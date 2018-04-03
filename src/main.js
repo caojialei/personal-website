@@ -5,27 +5,27 @@ import Vue from 'vue'
 import router from './router'
 import axios from 'axios'
 import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-chalk/index.css'
-// import {Button, Carousel, CarouselItem, Menu, MenuItem, Col, Row, Card} from 'element-ui'
+import hljs from 'highlight'
+// import marked from 'marked'
 import '../theme/index.css'
 import './assets/style/common.scss'
+import './assets/fonts/iconfont.css'
 import './assets/js/rem.js'
 
 import App from './App'
 
 Vue.use(ElementUI)
-// Vue.use(Button)
-// Vue.use(Carousel)
-// Vue.use(CarouselItem)
-// Vue.use(Menu)
-// Vue.use(MenuItem)
-//
-// Vue.use(Col)
-// Vue.use(Row)
-// Vue.use(Card)
+
+Vue.directive('highlight', function (el) {
+  let blocks = el.querySelectorAll('pre code')
+  blocks.forEach((block) => {
+    hljs.highlightBlock(block)
+  })
+})
 
 Vue.config.productionTip = false
-Vue.prototype.$ajax = axios
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+Vue.prototype.$http = axios
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

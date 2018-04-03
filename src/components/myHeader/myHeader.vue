@@ -3,7 +3,7 @@
     <div class="my-header-container">
       <div class="website-name">黄志鹏Kira</div>
       <el-menu mode="horizontal" :default-active="$route.path" class="my-header-nav"  @select="handleSelect">
-        <el-menu-item index="/index"><router-link to="/index">首页</router-link></el-menu-item>
+        <el-menu-item index="/index"><router-link to="/home">首页</router-link></el-menu-item>
         <el-menu-item index="/about"><router-link to="/about">关于</router-link></el-menu-item>
       </el-menu>
     </div>

@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/views/index/index'
+import home from '@/views/home/home'
 import about from '@/views/about/about'
 import catalog from '@/views/catalog/catalog'
+import article from '@/views/article/article'
 
 Vue.use(Router)
 
@@ -10,11 +11,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/index'  // 进/ 就会跳转到/index
+      redirect: '/home'  // 进/ 就会跳转到/home
     },
     {
-      path: '/index',
-      component: index
+      path: '/home',
+      component: home
     },
     {
       path: '/about',
@@ -23,6 +24,10 @@ export default new Router({
     {
       path: '/catalog',
       component: catalog
+    },
+    {
+      path: '/article/:articleId',
+      component: article
     }
   ]
 })
