@@ -35,6 +35,9 @@ module.exports = {
       '/website/*': {
         target: 'http://localhost:8888'
       }
+      // '/wesite/*': {
+      //   target: 'http://www.yizhihudie.com'
+      // }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

@@ -1,7 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-
 import router from './router'
 import axios from 'axios'
 import ElementUI from 'element-ui'
@@ -24,7 +23,8 @@ Vue.directive('highlight', function (el) {
 })
 
 Vue.config.productionTip = false
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
+// 将axios挂载到Vue实例中的$http上，在项目任何地方可通过this.$http来使用
 Vue.prototype.$http = axios
 /* eslint-disable no-new */
 new Vue({
