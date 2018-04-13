@@ -9,7 +9,7 @@
               <h1>{{item.articleTitle}}</h1>
               <span>最新修改：{{item.createdAt}}&nbsp;&nbsp;{{item.author}}</span>
               <article>{{item.content}}</article>
-              <p>标签：<i v-for="tag in articleTags">{{tag.title}} </i></p>
+              <p>标签：<i v-for="tag in item.tags">{{tag.title}} </i></p>
              </router-link>
           </div>
         </section>
@@ -88,7 +88,6 @@
         tags: [],
         articleListVo: [],
         articleList: [],
-        articleTags: [],
         authorinfo: {}
       }
     },
@@ -104,7 +103,6 @@
           // 请求成功
           this.articleListVo = res.data
           this.articleList = res.data.data
-          this._getArticleTag(this.articleList)
         }).catch(res => {
           // 请求失败
           console.log(res)
@@ -144,13 +142,6 @@
       // 显示当前页
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`)
-      },
-      // 获取文章标签
-      _getArticleTag(items) {
-        for (let i = 0; i < items.length; i++) {
-          this.articleTags = items[i].tags
-        }
-        console.log(this.articleTags)
       }
     },
     components: {
