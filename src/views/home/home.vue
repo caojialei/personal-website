@@ -5,12 +5,12 @@
         <!--文章列表-->
         <section class="article-list">
           <div class="item" v-for="item in articleList">
-            <router-link to="/article/2018032701">
+            <router-link :to="{ name: 'article', params: { articleId: item.articleId }}">
               <h1>{{item.articleTitle}}</h1>
               <span>最新修改：{{item.createdAt}}&nbsp;&nbsp;{{item.author}}</span>
               <article>{{item.content}}</article>
               <p>标签：<i v-for="tag in item.tags">{{tag.title}} </i></p>
-             </router-link>
+            </router-link>
           </div>
         </section>
 
@@ -88,6 +88,7 @@
         tags: [],
         articleListVo: [],
         articleList: [],
+        articleLink: '',
         authorinfo: {}
       }
     },

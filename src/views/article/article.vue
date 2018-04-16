@@ -7,7 +7,7 @@
         <div><i class="time">{{articledetail.createdAt}}</i>&nbsp;·&nbsp;<i class="author">{{articledetail.author}}</i></div>
       </div>
       <div class="content" v-html="markdownToHtml" v-highlight></div>
-      <div class="like"><span class="iconfont icon-love-b"></span><i> 赞一个 ~</i></div>
+      <div :class="favoriteStatus" @click="doFavorite(articledetail.articleId)"><span :class="favoriteIconsStatus"></span><i> 赞一个 ~</i></div>
     </section>
 
     <!--评论-->
@@ -25,11 +25,16 @@
       return {
         markdownString: '',
         articledetail: {},
-        comments: {}
+        comments: {},
+        isFavorite: '',
+        favoriteStatus: '',
+        favoriteIconsStatus: '',
+        favoriteStatusClasses: ['favoriteStatus unFavorite', 'favoriteStatus favorite'],
+        favoriteIconsClasses: ['iconfont icon-love-b1', 'iconfont icon-love-b']
       }
     },
     mounted() {
-      this.getMarkdown()
+      this.getArticleDetail()
       this.markdown()
       this.getComments()
     },
@@ -39,6 +44,20 @@
       }
     },
     methods: {
+      // 获取文章
+      getArticleDetail() {
+        this.$http.get('/website/articledetail').then(res => {
+          // success callback
+          this.articledetail = res.data
+          this.getMarkdown(this.articledetail.content)
+          this.isFavorite = this.articledetail.isFavorite
+          this.favoriteStatus = this.favoriteStatusClasses[this.articledetail.isFavorite]
+          this.favoriteIconsStatus = this.favoriteIconsClasses[this.articledetail.isFavorite]
+        }, res => {
+          // error callback
+          alert('文章内容获取失败')
+        })
+      },
       markdown() {
         marked.setOptions({
           renderer: new marked.Renderer(),
@@ -51,15 +70,24 @@
           smartypants: false
         })
       },
-      getMarkdown() {
-        this.$http.get('/website/articledetail').then(res => {
-          // success callback
-          this.articledetail = res.data
-          this.markdownString = this.articledetail.content
-        }, res => {
-          // error callback
-          alert('文章内容获取失败')
-        })
+      // 将markdown转化成html
+      getMarkdown(content) {
+        this.markdownString = content
+      },
+      // 点赞文章
+      doFavorite(id) {
+        console.log(id)
+        if (this.isFavorite === 1) {
+          this.favoriteStatus = this.favoriteStatusClasses[0]
+          this.favoriteIconsStatus = this.favoriteIconsClasses[0]
+          this.isFavorite = 0
+          console.log('取消文章点赞')
+        } else {
+          this.favoriteStatus = this.favoriteStatusClasses[1]
+          this.favoriteIconsStatus = this.favoriteIconsClasses[1]
+          this.isFavorite = 1
+          console.log('文章点赞')
+        }
       },
       // 获取评论列表
       getComments() {
@@ -119,11 +147,10 @@
       .content{
         padding: 0 16px;
       }
-      .like{
+      .favoriteStatus{
         display: block;
         width: 80px;
         height: 80px;
-        border: 2px solid #EA6F5A;
         border-radius: 50%;
         margin: 30px auto 0;
         span:before{
@@ -132,7 +159,6 @@
           line-height: 76px;
           text-align: center;
           font-size: 36px;
-          color: #EA6F5A;
         }
         i{
           display: block;
@@ -142,6 +168,19 @@
           font-size: 18px;
           color: #333;
         }
+        &.unFavorite{
+          border: 2px solid grey;
+          span{
+            color: grey;
+          }
+        }
+        &.favorite{
+          border: 2px solid #EA6F5A;
+          span{
+            color: #EA6F5A;
+          }
+        }
+
       }
     }
     .comment-container{
