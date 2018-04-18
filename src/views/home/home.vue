@@ -1,5 +1,11 @@
 <template>
   <div class="home-page page">
+    <!--<el-button>默认按钮</el-button>-->
+    <!--<el-button type="primary">主要按钮</el-button>-->
+    <!--<el-button type="success">成功按钮</el-button>-->
+    <!--<el-button type="info">信息按钮</el-button>-->
+    <!--<el-button type="warning">警告按钮</el-button>-->
+    <!--<el-button type="danger">危险按钮</el-button>-->
     <div class="content">
       <div class="col-main">
         <!--文章列表-->
@@ -16,16 +22,10 @@
 
         <!--分页-->
         <section class="pagination-container">
-          <pagination></pagination>
+          <pagination :articleListVo="articleListVo"></pagination>
         </section>
       </div>
       <div class="col-aside">
-        <!--<el-button>默认按钮</el-button>-->
-        <!--<el-button type="primary">主要按钮</el-button>-->
-        <!--<el-button type="success">成功按钮</el-button>-->
-        <!--<el-button type="info">信息按钮</el-button>-->
-        <!--<el-button type="warning">警告按钮</el-button>-->
-        <!--<el-button type="danger">危险按钮</el-button>-->
         <div class="col-right">
           <!--todo:二期功能 搜索-->
           <!--<section class="search-container">-->
@@ -47,15 +47,12 @@
           <!--分类目录-->
           <section class="dialog-container">
             <h3>分类目录</h3>
-            <ul>
-              <li><router-link to="/catalog">并发番（242）</router-link></li>
-              <li><a href="">并发番（242）</a></li>
-              <li><a href="">集合番（242）</a></li>
-              <li><a href="">c番（242）</a></li>
-              <li><a href="">d番（242）</a></li>
+            <ul v-for="item in catalogList">
+              <!--<li><router-link :to="{name: 'catalog', params: {catalogId: item.id }}" @click="goCatalog(item.id)">{{item.name}}（{{item.count}}）</router-link></li>-->
+              <li><router-link :to="{name: 'catalog', params: {catalogId: item.id }}">{{item.name}}（{{item.count}}）</router-link></li>
             </ul>
           </section>
-
+          <div @click="goCatalog()">传值</div>
           <!--标签-->
           <section class="tags-container">
             <h3>标签</h3>
@@ -77,24 +74,27 @@
 </template>
 <script>
   import pagination from '../../components/pagination/pagination.vue'
+  import bus from '../../main.js'
 
   export default {
     data() {
       return {
-        currentPage1: 5,
-        currentPage2: 5,
-        currentPage3: 5,
-        currentPage4: 4,
         tags: [],
-        articleListVo: [],
+        articleListVo: {},
         articleList: [],
         articleLink: '',
-        authorinfo: {}
+        authorinfo: {},
+        catalogListVo: {},
+        catalogList: []
       }
+    },
+    created() {
+//      bus.$emit('catalogId', '1234')
     },
     mounted() {
       this.getArticleList()
       this.getAuthorInfo()
+      this.getCatalog()
     },
     methods: {
       // 获取文章列表
@@ -135,6 +135,20 @@
           }).catch(res => {
             // 请求失败
         })
+      },
+      // 获取文章分类
+      getCatalog() {
+        this.$http.get('/website/cataloglist').then(res => {
+          this.catalogListVo = res.data
+          this.catalogList = res.data.data
+        }).catch(res => {
+          console.log('请求失败')
+        })
+      },
+      // 前往分类文章页面
+      goCatalog(id) {
+        console.log('dosomething')
+        bus.$emit('catalogId', '传值成功')
       },
       // 显示每页条数
       handleSizeChange(val) {

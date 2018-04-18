@@ -4,28 +4,35 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page.sync="currentPage1"
-        :page-size="1"
+        :current-page.sync="currentPage"
+        :page-size="articleListVo.pagesize"
         layout="prev, pager, next, jumper"
         background
-        :total="5">
+        :total="articleListVo.pageCount">
       </el-pagination>
     <!--</div>-->
   </div>
 </template>
 <script>
   export default {
-    methods: {
-      handleSizeChange(val) {
-        console.log(`每页 ${val} 条`)
-      },
-      handleCurrentChange(val) {
-        console.log(`当前页: ${val}`)
+    props: {
+      articleListVo: {
+        type: Object
       }
     },
     data() {
       return {
-        currentPage1: 2
+        currentPage: 1
+      }
+    },
+    methods: {
+      // 每页显示列表数
+      handleSizeChange(val) {
+        console.log(`每页 ${val} 条`)
+      },
+      // 获取当前页码
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`)
       }
     }
   }

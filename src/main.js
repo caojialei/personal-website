@@ -24,6 +24,8 @@ Vue.directive('highlight', function (el) {
 
 Vue.config.productionTip = false
 
+export default new Vue()
+
 // 将axios挂载到Vue实例中的$http上，在项目任何地方可通过this.$http来使用
 Vue.prototype.$http = axios
 /* eslint-disable no-new */

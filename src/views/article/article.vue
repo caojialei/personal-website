@@ -53,7 +53,7 @@
           this.isFavorite = this.articledetail.isFavorite
           this.favoriteStatus = this.favoriteStatusClasses[this.articledetail.isFavorite]
           this.favoriteIconsStatus = this.favoriteIconsClasses[this.articledetail.isFavorite]
-        }, res => {
+        }).catch(res => {
           // error callback
           alert('文章内容获取失败')
         })
@@ -117,7 +117,7 @@
     }
   }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   @import "../../assets/style/markdown";
   @import "../../assets/style/highlight.css";
 

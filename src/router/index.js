@@ -25,7 +25,7 @@ export default new Router({
     },
     {
       name: 'catalog',
-      path: '/catalog',
+      path: '/catalog/:catalogId',
       component: catalog
     },
     {

@@ -2,25 +2,25 @@
   <!--评论-->
   <div class="comments">
     <!--评论文章-->
-    <!--<div v-show="showCommentsBox">-->
-      <!--<h3>留言</h3>-->
-      <!--<div class="comments-box">-->
-        <!--<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" label-position="left" class="comments-ruleForm">-->
-          <!--<el-form-item label="姓名" prop="name" size="small">-->
-            <!--<el-input v-model="ruleForm.name"></el-input>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item label="邮件地址" prop="emailaddress" size="small">-->
-            <!--<el-input v-model="ruleForm.emailaddress"></el-input>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item label="评论" prop="comment">-->
-            <!--<el-input type="textarea" v-model="ruleForm.comment" :rows="5" placeholder="来说两句吧" ></el-input>-->
-          <!--</el-form-item>-->
-          <!--<el-form-item class="form-button">-->
-            <!--<el-button type="primary" @click="submitCommentsForm('ruleForm')">发布</el-button>-->
-          <!--</el-form-item>-->
-        <!--</el-form>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div v-show="showCommentsBox">
+      <h3>留言</h3>
+      <div class="comments-box">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" label-position="left" class="comments-ruleForm">
+          <el-form-item label="姓名" prop="name" size="small">
+            <el-input v-model="ruleForm.name"></el-input>
+          </el-form-item>
+          <el-form-item label="邮件地址" prop="emailaddress" size="small">
+            <el-input v-model="ruleForm.emailaddress"></el-input>
+          </el-form-item>
+          <el-form-item label="评论" prop="comment">
+            <el-input type="textarea" v-model="ruleForm.comment" :rows="5" placeholder="来说两句吧" ></el-input>
+          </el-form-item>
+          <el-form-item class="form-button">
+            <el-button type="primary" @click="submitCommentsForm('ruleForm')">发布</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+    </div>
 
     <!--评论列表-->
     <div class="comments-list">
