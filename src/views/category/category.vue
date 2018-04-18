@@ -53,7 +53,7 @@
           'categoryType': 1
         }, { headers: {
           // post请求的跨域
-          'Content-Type': 'application/x-www-form-urlencoded'
+          // 'Content-Type': 'application/x-www-form-urlencoded'
         }}).then(res => {
           // 请求成功
           this.articleListVo = res.data

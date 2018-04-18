@@ -72,6 +72,7 @@
           <section>
             <my-category>dsjkf</my-category>
           </section>
+          <div>authorInfo:{{authorInfo}}</div>
         </div>
       </div>
     </div>
