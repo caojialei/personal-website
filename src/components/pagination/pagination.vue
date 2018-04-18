@@ -5,10 +5,10 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page.sync="currentPage"
-        :page-size="articleListVo.pagesize"
+        :page-size="articleListVo.pageSize"
         layout="prev, pager, next, jumper"
         background
-        :total="articleListVo.pageCount">
+        :total="articleListVo.total">
       </el-pagination>
     <!--</div>-->
   </div>

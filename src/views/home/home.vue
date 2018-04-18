@@ -11,9 +11,9 @@
         <!--文章列表-->
         <section class="article-list">
           <div class="item" v-for="item in articleList">
-            <router-link :to="{ name: 'article', params: { articleId: item.articleId }}">
-              <h1>{{item.articleTitle}}</h1>
-              <span>最新修改：{{item.createdAt}}&nbsp;&nbsp;{{item.author}}</span>
+            <router-link :to="{ name: 'article', params: { articleId: item.id }}">
+              <h1>{{item.title}}</h1>
+              <span>最新修改：{{item.createTime}}&nbsp;&nbsp;{{item.author}}</span>
               <article>{{item.content}}</article>
               <p>标签：<i v-for="tag in item.tags">{{tag.title}} </i></p>
             </router-link>
@@ -37,7 +37,7 @@
             <div>
               <!--<img src="../../assets/img/huangzhipeng.jpg">-->
             </div>
-            <p>{{authorinfo.selfDescription}}</p>
+            <p>{{authorInfo.selfDescription}}</p>
             <ul>
               <li><a class="iconfont icon-GitHub" href="https://github.com/kiraGitHub"></a></li>
               <li><a class="iconfont icon-zhihu" href="https://www.zhihu.com/people/kira-49-60/activities"></a></li>
@@ -47,11 +47,11 @@
           <!--分类目录-->
           <section class="dialog-container">
             <h3>分类目录</h3>
-            <ul v-for="item in catalogList">
-              <li><router-link :to="{name: 'catalog', params: {catalogId: item.id }}">{{item.name}}（{{item.count}}）</router-link></li>
+            <ul v-for="item in categoryList">
+              <li><router-link :to="{name: 'catalog', params: {categoryId: item.id }}">{{item.name}}（{{item.articleCounts}}）</router-link></li>
             </ul>
           </section>
-          <div @click="goCatalog()">传值</div>
+          <div @click="goCategory()">传值</div>
           <!--标签-->
           <section class="tags-container">
             <h3>标签</h3>
@@ -70,7 +70,7 @@
           </section>
 
           <section>
-            <my-catalog>dsjkf</my-catalog>
+            <my-category>dsjkf</my-category>
           </section>
         </div>
       </div>
@@ -80,7 +80,7 @@
 </template>
 <script>
   import pagination from '../../components/pagination/pagination.vue'
-  import myCatalog from '../../components/myCatalog/myCatalog.vue'
+  import myCategory from '../../components/myCategory/myCategory.vue'
   import { bus } from '../../main.js'
 
   export default {
@@ -90,70 +90,57 @@
         articleListVo: {},
         articleList: [],
         articleLink: '',
-        authorinfo: {},
-        catalogListVo: {},
-        catalogList: []
+        authorInfo: {},
+        categoryListVo: {},
+        categoryList: []
       }
     },
     mounted() {
-      this.getArticleList()
+      this.listArticle()
       this.getAuthorInfo()
-      this.getCatalog()
+      this.listCategory()
     },
     methods: {
       // 获取文章列表
-      getArticleList() {
+      listArticle() {
         bus.$emit('catalogId', '传值成功111')
-        this.$http.get('/website/articlelist?pageNo=1')
+        this.$http.post('/website/article/listArticle', {
+          'pageNo': 1,
+          'pageSize': 10,
+          'categoryType': 0
+        })
           .then(res => {
           // 请求成功
           this.articleListVo = res.data
-          this.articleList = res.data.data
+          this.articleList = res.data.articleList
         }).catch(res => {
           // 请求失败
           console.log(res)
         })
       },
-//      getArticleList() {
-//        this.$http.post('/website/articlelist', {
-//          pageNo: 1,
-//          pageSize: 5
-//        }, { headers: {
-//          // post请求的跨域
-//          'Content-Type': 'application/x-www-form-urlencoded'
-//        }}).then(res => {
-//          // 请求成功
-//          this.articleListVo = res.data
-//          this.articleList = res.data.data
-//          this._getArticleTag(this.articleList)
-//        }).catch(res => {
-//          // 请求失败
-//          console.log(res)
-//        })
-//      },
       // 获取作者信息
       getAuthorInfo() {
-        this.$http.get('/website/authorinfo')
+        this.$http.get('/website/user/getAuthorInfo')
           .then(res => {
             // 请求成功
-            this.authorinfo = res.data
+            this.authorInfo = res.data
           }).catch(res => {
             // 请求失败
         })
       },
       // 获取文章分类
-      getCatalog() {
-        this.$http.get('/website/cataloglist').then(res => {
-          this.catalogListVo = res.data
-          this.catalogList = res.data.data
+      listCategory() {
+        this.$http.get('/website/category/listCategory').then(res => {
+          this.categoryListVo = res.data
+          this.categoryList = res.data.categoryList
         }).catch(res => {
           console.log('请求失败')
         })
       },
       // 前往分类文章页面
-      goCatalog(id) {
+      goCategory(id) {
         console.log('dosomething')
-        bus.$emit('catalogId', '传值成功')
+        bus.$emit('categoryId', '传值成功')
       },
       // 显示每页条数
       handleSizeChange(val) {
@@ -166,7 +153,7 @@
     },
     components: {
       pagination,
-      myCatalog
+      myCategory
     }
   }
 </script>

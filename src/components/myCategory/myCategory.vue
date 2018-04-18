@@ -1,18 +1,18 @@
 <template>
-  <div>{{catalogId}}</div>
+  <div>{{categoryId}}</div>
 </template>
 <script>
   import { bus } from '../../main.js'
   export default {
     data() {
       return {
-        'catalogId': ''
+        'categoryId': ''
       }
     },
     created() {
-      bus.$on('catalogId', (id) => {
+      bus.$on('categoryId', (id) => {
           console.log('getSomething')
-          this.catalogId = id
+          this.categoryId = id
         })
     }
   }
