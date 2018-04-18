@@ -3,11 +3,11 @@
     <!--文章-->
     <section class="article-container">
       <div class="header">
-        <h1>{{articledetail.articleTitle}}</h1>
-        <div><i class="time">{{articledetail.createdAt}}</i>&nbsp;·&nbsp;<i class="author">{{articledetail.author}}</i></div>
+        <h1>{{articleDetail.title}}</h1>
+        <div><i class="time">{{articleDetail.createTime}}</i>&nbsp;·&nbsp;<i class="author">{{articleDetail.author}}</i></div>
       </div>
       <div class="content" v-html="markdownToHtml" v-highlight></div>
-      <div :class="favoriteStatus" @click="doFavorite(articledetail.articleId)"><span :class="favoriteIconsStatus"></span><i> 赞一个 ~</i></div>
+      <div :class="favoriteStatus" @click="doFavorite(articleDetail.id)"><span :class="favoriteIconsStatus"></span><i> 赞一个 ~</i></div>
     </section>
 
     <!--评论-->
@@ -24,7 +24,7 @@
     data() {
       return {
         markdownString: '',
-        articledetail: {},
+        articleDetail: {},
         comments: {},
         isFavorite: '',
         favoriteStatus: '',
@@ -46,13 +46,13 @@
     methods: {
       // 获取文章
       getArticleDetail() {
-        this.$http.get('/website/articledetail').then(res => {
+        this.$http.get('/website/article/getArticleDetail').then(res => {
           // success callback
-          this.articledetail = res.data
-          this.getMarkdown(this.articledetail.content)
-          this.isFavorite = this.articledetail.isFavorite
-          this.favoriteStatus = this.favoriteStatusClasses[this.articledetail.isFavorite]
-          this.favoriteIconsStatus = this.favoriteIconsClasses[this.articledetail.isFavorite]
+          this.articleDetail = res.data
+          this.getMarkdown(this.articleDetail.content)
+          this.isFavorite = this.articleDetail.isFavorite
+          this.favoriteStatus = this.favoriteStatusClasses[this.articleDetail.isFavorite]
+          this.favoriteIconsStatus = this.favoriteIconsClasses[this.articleDetail.isFavorite]
         }).catch(res => {
           // error callback
           alert('文章内容获取失败')
@@ -91,6 +91,7 @@
       },
       // 获取评论列表
       getComments() {
+        // todo 评论列表更新
         this.$http.get('/website/articlecomments?articleId=123').then(res => {
           // success callback
           this.comments = res.data

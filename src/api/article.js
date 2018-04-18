@@ -57,8 +57,8 @@ apiRoutes.post('/website/article/getArticleDetail', (req, res) => {
     }
   )
 })
-// // articledetail
-// apiRoutes.get('/website/articledetail', (req, res) => {
+// // articleDetail
+// apiRoutes.get('/website/articleDetail', (req, res) => {
 //
 //   readFile.readFile(function(err,data){
 //     if (err) {

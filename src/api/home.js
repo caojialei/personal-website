@@ -2,7 +2,7 @@ const express = require('express')
 const apiRoutes = express.Router()
 
 // info
-apiRoutes.get('/website/authorinfo', (req, res) => {
+apiRoutes.get('/website/user/getAuthorDetail', (req, res) => {
   res.json(
     {
       'respCode': 0,
