@@ -48,7 +48,7 @@
           <section class="dialog-container">
             <h3>分类目录</h3>
             <ul v-for="item in categoryList">
-              <li><router-link :to="{name: 'catalog', params: {categoryId: item.id }}">{{item.name}}（{{item.articleCounts}}）</router-link></li>
+              <li><router-link :to="{name: 'category', params: {categoryId: item.id }}">{{item.name}}（{{item.articleCounts}}）</router-link></li>
             </ul>
           </section>
           <div @click="goCategory()">传值</div>

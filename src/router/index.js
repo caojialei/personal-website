@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/views/home/home'
 import about from '@/views/about/about'
-import catalog from '@/views/catalog/catalog'
+import category from '@/views/category/category'
 import article from '@/views/article/article'
 
 Vue.use(Router)
@@ -24,9 +24,9 @@ export default new Router({
       component: about
     },
     {
-      name: 'catalog',
-      path: '/catalog/:catalogId',
-      component: catalog
+      name: 'category',
+      path: '/category/:categoryId',
+      component: category
     },
     {
       name: 'article',
