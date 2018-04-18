@@ -2,7 +2,7 @@
   <div class="catalog-page page">
     <!--分类文章名-->
     <section class="catalog-name">
-      <span>分类：</span>
+      <span>标签：</span>
       <span class="name">{{articleListVo.catalogName}}</span>
     </section>
 

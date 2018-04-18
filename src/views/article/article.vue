@@ -99,18 +99,6 @@
           alert('文章评论获取失败')
         })
       }
-//      markdown() {
-//        marked.setOptions({
-//          renderer: new marked.Renderer(),
-//          gfm: true,
-//          tables: true,
-//          breaks: false,
-//          pedantic: false,
-//          sanitize: false,
-//          smartLists: true,
-//          smartypants: false
-//        })
-//      }
     },
     components: {
       comment
@@ -180,7 +168,6 @@
             color: #EA6F5A;
           }
         }
-
       }
     }
     .comment-container{

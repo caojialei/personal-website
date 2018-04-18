@@ -48,7 +48,6 @@
           <section class="dialog-container">
             <h3>分类目录</h3>
             <ul v-for="item in catalogList">
-              <!--<li><router-link :to="{name: 'catalog', params: {catalogId: item.id }}" @click="goCatalog(item.id)">{{item.name}}（{{item.count}}）</router-link></li>-->
               <li><router-link :to="{name: 'catalog', params: {catalogId: item.id }}">{{item.name}}（{{item.count}}）</router-link></li>
             </ul>
           </section>
@@ -56,6 +55,9 @@
           <!--标签-->
           <section class="tags-container">
             <h3>标签</h3>
+            <!--<ul class="tags">-->
+              <!--<li><router-link></router-link></li>-->
+            <!--</ul>-->
             <div class="tags">
               <a href="" title="设计模式" rel="7">设计模式</a>
               <a href="" title="创建型模式" rel="7">创建型模式</a>
@@ -66,6 +68,10 @@
               <a href="" title="CoAP" rel="7">CoAP</a>
             </div>
           </section>
+
+          <section>
+            <my-catalog>dsjkf</my-catalog>
+          </section>
         </div>
       </div>
     </div>
@@ -74,7 +80,8 @@
 </template>
 <script>
   import pagination from '../../components/pagination/pagination.vue'
-  import bus from '../../main.js'
+  import myCatalog from '../../components/myCatalog/myCatalog.vue'
+  import { bus } from '../../main.js'
 
   export default {
     data() {
@@ -88,9 +95,6 @@
         catalogList: []
       }
     },
-    created() {
-//      bus.$emit('catalogId', '1234')
-    },
     mounted() {
       this.getArticleList()
       this.getAuthorInfo()
@@ -99,6 +103,7 @@
     methods: {
       // 获取文章列表
       getArticleList() {
+        bus.$emit('catalogId', '传值成功111')
         this.$http.get('/website/articlelist?pageNo=1')
           .then(res => {
           // 请求成功
@@ -160,7 +165,8 @@
       }
     },
     components: {
-      pagination
+      pagination,
+      myCatalog
     }
   }
 </script>
