@@ -26,11 +26,7 @@
         markdownString: '',
         articleDetail: {},
         comments: {},
-        isFavorite: '',
-        favoriteStatus: '',
-        favoriteIconsStatus: '',
-        favoriteStatusClasses: ['favoriteStatus unFavorite', 'favoriteStatus favorite'],
-        favoriteIconsClasses: ['iconfont icon-love-b1', 'iconfont icon-love-b']
+        isFavorite: ''
       }
     },
     mounted() {
@@ -41,6 +37,22 @@
     computed: {
       markdownToHtml: function () {
         return marked(this.markdownString || '')
+      },
+      favoriteStatus: function () {
+//        return 'aaa'
+//        console.log(this.isFavorite)
+        if (this.isFavorite === 1) {
+          return ('favoriteStatus favorite')
+        } else {
+          return ('favoriteStatus unFavorite')
+        }
+      },
+      favoriteIconsStatus: function () {
+        if (this.isFavorite === 1) {
+          return ('iconfont icon-love-b')
+        } else {
+          return ('iconfont icon-love-b1')
+        }
       }
     },
     methods: {
@@ -51,8 +63,6 @@
           this.articleDetail = res.data
           this.getMarkdown(this.articleDetail.content)
           this.isFavorite = this.articleDetail.isFavorite
-          this.favoriteStatus = this.favoriteStatusClasses[this.articleDetail.isFavorite]
-          this.favoriteIconsStatus = this.favoriteIconsClasses[this.articleDetail.isFavorite]
         }).catch(res => {
           // error callback
           alert('文章内容获取失败')
@@ -78,13 +88,13 @@
       doFavorite(id) {
         console.log(id)
         if (this.isFavorite === 1) {
-          this.favoriteStatus = this.favoriteStatusClasses[0]
-          this.favoriteIconsStatus = this.favoriteIconsClasses[0]
+//          this.favoriteStatus = this.favoriteStatusClasses[0]
+//          this.favoriteIconsStatus = this.favoriteIconsClasses[0]
           this.isFavorite = 0
           console.log('取消文章点赞')
         } else {
-          this.favoriteStatus = this.favoriteStatusClasses[1]
-          this.favoriteIconsStatus = this.favoriteIconsClasses[1]
+//          this.favoriteStatus = this.favoriteStatusClasses[1]
+//          this.favoriteIconsStatus = this.favoriteIconsClasses[1]
           this.isFavorite = 1
           console.log('文章点赞')
         }

@@ -69,10 +69,10 @@
             </div>
           </section>
 
+          <!--测试-->
           <section>
-            <my-category>dsjkf</my-category>
+            <my-category></my-category>
           </section>
-          <div>authorInfo:{{authorInfo}}</div>
         </div>
       </div>
     </div>
