@@ -35,7 +35,7 @@ module.exports = {
       //   '/website/*': {
       //   target: 'http://localhost:8888',
         '/website': {
-          target: 'http://127.0.0.1:8888',
+          target: 'http://[::1]:8888',
           timeout: 2000
       }
     },
