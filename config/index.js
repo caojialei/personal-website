@@ -34,7 +34,7 @@ module.exports = {
     proxyTable: {
       //   '/website/*': {
       //   target: 'http://localhost:8888',
-        '/website/**': {
+        '/website': {
         target: 'http://localhost:8888'
       }
     },
