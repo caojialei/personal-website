@@ -29,9 +29,25 @@ body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, l
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: 'iconfont';  /* project id 602787 */
+  src: url('//at.alicdn.com/t/font_602787_gnmblytdnp7j5rk9.eot');
+  src: url('//at.alicdn.com/t/font_602787_gnmblytdnp7j5rk9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_602787_gnmblytdnp7j5rk9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_602787_gnmblytdnp7j5rk9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_602787_gnmblytdnp7j5rk9.svg#iconfont') format('svg');
+}
 *{font-size: 16px}
 img{max-width: 100%;display: block}
 .page{
   max-width: 1150px!important;
-  margin: 0 auto!important;;
+  margin: 0 auto!important;
+  .page-content{
+    position: relative;
+    padding: 0 15px;
+    .col-main{
+      margin: 0 320px 0 0;
+      overflow: hidden;
+    }
+  }
 }

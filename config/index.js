@@ -32,8 +32,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      //   '/website/*': {
-      //   target: 'http://localhost:8888',
+        // '/website/*': {
+        // target: 'http://localhost:8888',
         '/website': {
           target: 'http://127.0.0.1:8888',
           timeout: 2000

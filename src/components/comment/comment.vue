@@ -28,19 +28,20 @@
       <ul>
         <li v-for="(comment,index) in commentsList">
           <div class="comment">
-            <h5>{{comment.c_user_name}}</h5>
-            <span>{{comment.createdCt}}</span>
-            <div>{{comment.c_content}}</div>
+            <h5>{{comment.userName}}</h5>
+            <span>{{comment.createdAt}}</span>
+            <div>{{comment.content}}</div>
           </div>
           <div class="actions">
-            <span class="iconfont icon-dianzan1"><i v-show="comment.likes_count" @click="doFabulous(comment)">{{comment.likes_count}}人点</i>赞</span>
+            <!--二期功能：评论点赞-->
+            <!--<span class="iconfont icon-dianzan1"><i v-show="comment.likes_count" @click="doFabulous(comment)">{{comment.likes_count}}人点</i>赞</span>-->
             <span class="iconfont icon-huifu" @click="doReply(index,'replyC',comment)">回复</span>
           </div>
           <section class="reply-container">
-            <div v-for="rItem in comment.reply_list" class="item">
-              <p><span class="name">{{rItem.r_user_name}}</span>：<span class="name">@{{rItem.r_c_user_name}}</span> <span>{{rItem.r_content}}</span></p>
+            <div v-for="rItem in comment.replyList" class="item">
+              <p><span class="name">{{rItem.fromUserName}}</span>：<span class="name">@{{rItem.toUserName}}</span> <span>{{rItem.content}}</span></p>
               <div class="reply-tool">
-                <span class="time">{{rItem.createdRt}}</span>
+                <span class="time">{{rItem.createdAt}}</span>
                 <span class="iconfont icon-huifu" @click="doReply(index,'replyR', rItem)">回复</span>
               </div>
             </div>
@@ -109,7 +110,7 @@
     },
     watch: {
       comments: function () {
-        this.commentsList = this.comments.data
+        this.commentsList = this.comments.commentList
       }
     },
     methods: {

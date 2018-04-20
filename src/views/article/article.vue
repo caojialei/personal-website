@@ -4,10 +4,13 @@
     <section class="article-container">
       <div class="header">
         <h1>{{articleDetail.title}}</h1>
-        <div><i class="time">{{articleDetail.createTime}}</i>&nbsp;·&nbsp;<i class="author">{{articleDetail.author}}</i></div>
+        <div><i class="time">{{articleDetail.createdAt}}</i>&nbsp;·&nbsp;<i class="author">{{articleDetail.author}}</i></div>
       </div>
       <div class="content" v-html="markdownToHtml" v-highlight></div>
-      <div :class="favoriteStatus" @click="doFavorite(articleDetail.id)"><span :class="favoriteIconsStatus"></span><i> 赞一个 ~</i></div>
+
+      <!--todo：二期功能--文章点赞-->
+      <!--<div :class="favoriteStatus" @click="doFavorite(articleDetail.id)"><span :class="favoriteIconsStatus"></span><i> 赞一个 ~</i></div>-->
+
     </section>
 
     <!--评论-->
@@ -37,23 +40,22 @@
     computed: {
       markdownToHtml: function () {
         return marked(this.markdownString || '')
-      },
-      favoriteStatus: function () {
-//        return 'aaa'
-//        console.log(this.isFavorite)
-        if (this.isFavorite === 1) {
-          return ('favoriteStatus favorite')
-        } else {
-          return ('favoriteStatus unFavorite')
-        }
-      },
-      favoriteIconsStatus: function () {
-        if (this.isFavorite === 1) {
-          return ('iconfont icon-love-b')
-        } else {
-          return ('iconfont icon-love-b1')
-        }
       }
+      // todo:二期功能--文章点赞
+//      favoriteStatus: function () {
+//        if (this.isFavorite === 1) {
+//          return ('favoriteStatus favorite')
+//        } else {
+//          return ('favoriteStatus unFavorite')
+//        }
+//      },
+//      favoriteIconsStatus: function () {
+//        if (this.isFavorite === 1) {
+//          return ('iconfont icon-love-b')
+//        } else {
+//          return ('iconfont icon-love-b1')
+//        }
+//      }
     },
     methods: {
       // 获取文章
@@ -84,28 +86,30 @@
       getMarkdown(content) {
         this.markdownString = content
       },
-      // 点赞文章
-      doFavorite(id) {
-        console.log(id)
-        if (this.isFavorite === 1) {
-//          this.favoriteStatus = this.favoriteStatusClasses[0]
-//          this.favoriteIconsStatus = this.favoriteIconsClasses[0]
-          this.isFavorite = 0
-          console.log('取消文章点赞')
-        } else {
-//          this.favoriteStatus = this.favoriteStatusClasses[1]
-//          this.favoriteIconsStatus = this.favoriteIconsClasses[1]
-          this.isFavorite = 1
-          console.log('文章点赞')
-        }
-      },
-      // 获取评论列表
+      // todo：二期功能--点赞文章
+//      doFavorite(id) {
+//        console.log(id)
+//        if (this.isFavorite === 1) {
+//          this.isFavorite = 0
+//          console.log('取消文章点赞')
+//        } else {
+//          this.isFavorite = 1
+//          console.log('文章点赞')
+//        }
+//      },
+      // 获取文章评论列表
       getComments() {
-        // todo 评论列表更新
-        this.$http.get('/website/articlecomments?articleId=123').then(res => {
+        this.$http.post('/website/comment/listArticleComments', {
+          'articleId': '123',
+          'pageNo': '1',
+          'pageSize': '5'
+        }, { headers: {
+          // post请求的跨域
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }}).then(res => {
           // success callback
           this.comments = res.data
-        }, res => {
+        }).catch(res => {
           // error callback
           alert('文章评论获取失败')
         })
