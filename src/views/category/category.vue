@@ -3,7 +3,7 @@
     <div class="page-content">
       <!--分类文章名-->
       <section class="category-name">
-        <span>标签：</span>
+        <span>分类：</span>
         <span class="name">{{categoryName}}</span>
       </section>
 
@@ -30,11 +30,11 @@
       }
     },
     created() {
-      // 获取路由中的参数
-//      this.categoryName = this.$route.params.categoryName
+      // 获取不同路由下切换的路由参数
+      this.categoryName = this.$route.params.name
+      // 获取同一路由下切换的路由参数
       bus.$on('name', (name) => {
         this.categoryName = name
-        console.log(11111111)
       })
     },
     mounted() {

@@ -21,14 +21,21 @@
 <script>
   import myAside from '../../components/myAside/myAside.vue'
   import articleList from '../../components/articleList/articleList.vue'
+  import {bus} from '../../main.js'
 
   export default {
     data() {
-      return {}
+      return {
+        tagName: ''
+      }
     },
     created() {
-      // 获取路由中的参数
-      this.tagName = this.$route.params.tagName
+      // 获取不同路由下切换的路由参数
+      this.tagName = this.$route.params.name
+      // 获取同一路由下切换的路由参数
+      bus.$on('name', (name) => {
+        this.tagName = name
+      })
     },
     mounted() {
     },

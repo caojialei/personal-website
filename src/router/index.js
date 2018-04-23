@@ -26,12 +26,12 @@ export default new Router({
     },
     {
       name: 'category',
-      path: '/category/:categoryId/:categoryName',
+      path: '/category/:categoryId/:name',
       component: category
     },
     {
       name: 'tag',
-      path: '/tag/:tagId/:tagName',
+      path: '/tag/:tagId/:name',
       component: tag
     },
     {

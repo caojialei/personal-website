@@ -120,9 +120,11 @@
     }
   }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+  @import "../../assets/style/common";
   @import "../../assets/style/markdown";
-  @import "../../assets/style/highlight.css";
+  @import "../../assets/style/highlight";
+
 
   .article-page{
     .article-container{

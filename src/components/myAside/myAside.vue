@@ -21,8 +21,8 @@
       <!--分类目录-->
       <section class="dialog-container">
         <h3>分类目录</h3>
-        <ul v-for="item in categoryList">
-          <li><router-link :to="{name: 'category', params: {categoryId: item.id,categoryName: item.name}}">{{item.name}}（{{item.articleCounts}}）</router-link></li>
+        <ul>
+          <li v-for="item in categoryList"><router-link :to="{name: 'category', params: {categoryId: item.id,name: item.name}}">{{item.name}}（{{item.articleCounts}}）</router-link></li>
         </ul>
       </section>
 
@@ -30,7 +30,7 @@
       <section class="tags-container">
         <h3>标签</h3>
         <ul>
-          <li v-for="item in tagList"><router-link :to="{name: 'tag', params: {tagId: item.id,tagName: item.name }}" >{{item.name}}</router-link></li>
+          <li v-for="item in tagList"><router-link :to="{name: 'tag', params: {tagId: item.id,name: item.name }}" >{{item.name}}</router-link></li>
         </ul>
       </section>
     </div>
@@ -55,11 +55,10 @@
       this.getListTag()
     },
     watch: {
-      // 同一路由下，监听路由参数的变化
-      '$route'(to, from) {
-        console.log(this.$route.params)
-//        bus.$emit('name', this.$route.params.tagName)
-//        bus.$emit('name', 1)
+      // 同一路由下切换，监听路由参数的变化
+      '$route'() {
+        console.log('当前路由参数为：' + this.$route.params.name)
+        bus.$emit('name', this.$route.params.name)
       }
     },
     methods: {
@@ -91,11 +90,6 @@
           }).catch(res => {
           alert('请求失败')
         })
-      },
-      // todo
-      go() {
-        bus.$emit('name', 1)
-        console.log('点击')
       }
     }
   }
