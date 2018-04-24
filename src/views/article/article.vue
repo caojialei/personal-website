@@ -6,7 +6,7 @@
         <h1>{{articleDetail.title}}</h1>
         <div><i class="time">{{articleDetail.createdAt}}</i>&nbsp;·&nbsp;<i class="author">{{articleDetail.author}}</i></div>
       </div>
-      <div class="content" v-html="markdownToHtml" v-highlight></div>
+      <div class="content markdown-theme" v-html="markdownToHtml" v-highlight></div>
 
       <!--todo：二期功能--文章点赞-->
       <!--<div :class="favoriteStatus" @click="doFavorite(articleDetail.id)"><span :class="favoriteIconsStatus"></span><i> 赞一个 ~</i></div>-->
@@ -120,11 +120,9 @@
     }
   }
 </script>
-<style lang="scss">
-  @import "../../assets/style/common";
-  @import "../../assets/style/markdown";
+<style lang="scss" >
   @import "../../assets/style/highlight";
-
+  @import "../../assets/style/markdown";
 
   .article-page{
     .article-container{

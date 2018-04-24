@@ -3,13 +3,12 @@
 import Vue from 'vue'
 import router from './router'
 import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/display.css'
 import hljs from 'highlight'
-// import marked from 'marked'
 import '../theme/index.css'
 import './assets/style/common.scss'
 import './assets/fonts/iconfont.css'
 import './assets/js/rem.js'
-
 import App from './App'
 import axios from './axios'
 

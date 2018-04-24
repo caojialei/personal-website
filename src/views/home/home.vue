@@ -6,34 +6,22 @@
     <!--<el-button type="info">信息按钮</el-button>-->
     <!--<el-button type="warning">警告按钮</el-button>-->
     <!--<el-button type="danger">危险按钮</el-button>-->
-    <div class="page-content">
-      <!--主体-->
-      <div class="col-main">
-        <article-list></article-list>
 
-        <!--&lt;!&ndash;文章列表&ndash;&gt;-->
-        <!--<section class="article-list">-->
-          <!--<div class="item" v-for="item in articleList">-->
-            <!--<router-link :to="{ name: 'article', params: { articleId: item.id }}">-->
-              <!--<h1>{{item.title}}</h1>-->
-              <!--<span>最新修改：{{item.createdAt}}&nbsp;&nbsp;{{item.author}}</span>-->
-              <!--<article>{{item.content}}</article>-->
-              <!--<p>标签：<i v-for="tag in item.tags">{{tag.title}} </i></p>-->
-            <!--</router-link>-->
-          <!--</div>-->
-        <!--</section>-->
+    <!--<div class="page-content">-->
+      <!--&lt;!&ndash;主体&ndash;&gt;-->
+      <!--<div class="col-main">-->
+        <!--<article-list></article-list>-->
+      <!--</div>-->
 
-        <!--&lt;!&ndash;分页&ndash;&gt;-->
-        <!--<section class="pagination-container">-->
-          <!--<pagination :articleListVo="articleListVo"></pagination>-->
-        <!--</section>-->
-      </div>
+      <!--&lt;!&ndash;侧边栏&ndash;&gt;-->
+      <!--<my-aside></my-aside>-->
+    <!--</div>-->
 
-      <!--侧边栏-->
-      <my-aside></my-aside>
-    </div>
+    <el-row class="page-content">
+      <el-col :xs="24" :sm="17" class="col-main"><article-list :articleListParams="articleListParams"></article-list></el-col>
+      <el-col :xs="24" :sm="7"><my-aside></my-aside></el-col>
+    </el-row>
   </div>
-
 </template>
 <script>
   import myAside from '../../components/myAside/myAside.vue'
@@ -41,9 +29,18 @@
 
   export default {
     data() {
-      return {}
+      return {
+        articleListParams: {
+          listType: '首页',
+          pageNo: 1,
+          pageSize: 5,
+          categoryType: 0,
+          tagType: 0
+        }
+      }
     },
     mounted() {
+      console.log(this.articleListParams.tagType)
     },
     methods: {
     },
@@ -54,6 +51,23 @@
   }
 </script>
 <style lang="scss">
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+
 
   .home-page{
     margin: 0 auto;

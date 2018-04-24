@@ -96,10 +96,10 @@
 </script>
 <style lang="scss">
   .col-aside{
-    width: 280px;
-    position: absolute;
-    top: 0;
-    right: 15px;
+    /*width: 280px;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 15px;*/
     padding-top: 100px;
     section{
       margin: 50px 0;

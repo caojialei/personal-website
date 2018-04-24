@@ -2,10 +2,15 @@
   <div class="my-header">
     <div class="my-header-container">
       <div class="website-name">黄志鹏Kira</div>
-      <el-menu mode="horizontal" :default-active="$route.path" class="my-header-nav"  @select="handleSelect">
+
+      <!--screen > 768：导航-->
+      <el-menu mode="horizontal" :default-active="$route.path" class="my-header-nav hidden-sm"  @select="handleSelect">
         <el-menu-item index="/index"><router-link to="/home">首页</router-link></el-menu-item>
         <el-menu-item index="/about"><router-link to="/about">关于</router-link></el-menu-item>
       </el-menu>
+
+      <!--screen < 768：导航-->
+      <i class="el-icon-menu hidden-sm-and-up navbar-toggle"></i>
     </div>
   </div>
 </template>
@@ -15,11 +20,11 @@
   export default {
     data() {
       return {
-        activeIndex: '1',
-        activeIndex2: '1',
-        activeIndex3: '1',
-        activeIndex4: '1',
-        slideDown: false
+//        activeIndex: '1',
+//        activeIndex2: '1',
+//        activeIndex3: '1',
+//        activeIndex4: '1',
+//        slideDown: false
       }
     },
     methods: {
@@ -72,7 +77,11 @@
           }
         }
       }
-
+      .navbar-toggle{
+        float: right;
+        margin-top: 23px;
+        font-size: 30px;
+      }
     }
   }
 </style>

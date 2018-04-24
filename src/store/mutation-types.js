@@ -1,0 +1,4 @@
+export const SET_ARTICLE_LIST_CURRENT_PAGE = 'SET_ARTICLE_LIST_CURRENT_PAGE'
+// export const SET_PAGE_NO = 'SET_PAGE_NO'
+// export const SET_PAGE_SIZE = 'SET_PAGE_SIZE'
+// export const SET_PAGE_SIZE = 'SET_PAGE_SIZE'

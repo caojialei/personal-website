@@ -1,5 +1,11 @@
 <template>
   <div>
+    <!--类型文章名-->
+    <section class="list-type-name" v-if="!(articleListParams.categoryType==0 && articleListParams.tagType==0)">
+      <span>{{articleListParams.listType}}：</span>
+      <span class="name">{{listTypeName}}</span>
+    </section>
+
     <!--文章列表-->
     <section class="article-list">
       <div class="item" v-for="item in articleList">
@@ -20,15 +26,36 @@
 </template>
 <script>
   import pagination from '../../components/pagination/pagination.vue'
+  import {bus} from '../../main.js'
+//  import {mapActions} from 'vuex'
 
   export default {
+    props: {
+      articleListParams: {
+        type: Object
+      }
+    },
     data() {
       return {
+        listType: '',
+        listTypeName: '',
         tags: [],
         articleListVo: {},
         articleList: [],
         articleLink: ''
       }
+    },
+    created() {
+      // 获取不同路由下切换的路由参数
+      this.listTypeName = this.$route.params.name
+      // 获取同一路由下切换的路由参数
+      bus.$on('name', (name) => {
+        this.listTypeName = name
+      })
+
+//      bus.$on('currentPage', (page) => {
+//        console.log('当前页' + page)
+//      })
     },
     mounted() {
       this.getListArticle()
@@ -38,9 +65,9 @@
       getListArticle() {
         this.$http.post('/website/article/listArticle', {
           'pageNo': 1,
-          'pageSize': 10,
-          'categoryType': 0,
-          'tagType': 0
+          'pageSize': this.articleListParams.pageSize,
+          'categoryType': this.articleListParams.categoryType,
+          'tagType': this.articleListParams.tagType
         }, { headers: {
           // post请求的跨域
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -61,6 +88,7 @@
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`)
       }
+//      ...mapActions(['articleListCurrentPage'])
     },
     components: {
       pagination
@@ -68,9 +96,23 @@
   }
 </script>
 <style lang="scss">
+  .list-type-name{
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 36px 0 18px;
+    /*border-bottom: 1px solid #eee;*/
+    .name{
+      display: inline-block;
+      line-height: 40px;
+      padding: 0 20px;
+      border: 1px solid #e5e9f2;
+      border-radius: 20px;
+    }
+  }
   .article-list{
-    float: left;
+    /*float: left;*/
     margin-top: 80px;
+    padding:0 35px 0 0;
     .item{
       margin-bottom: 80px;
       h1{

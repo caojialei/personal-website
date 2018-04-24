@@ -17,37 +17,37 @@
       </div>
     </section>
 
-    <!--留言-->
-    <section class="comment-container">
-      <comment :comments="messageListVo"></comment>
-    </section>
+    <!--todo:二期---留言-->
+    <!--<section class="comment-container">-->
+      <!--<comment :comments="messageListVo"></comment>-->
+    <!--</section>-->
   </div>
 </template>
 <script>
-  import comment from '../../components/comment/comment.vue'
+//  import comment from '../../components/comment/comment.vue'
 
-  export default {
-    data() {
-      return {
-        messageListVo: {}
-      }
-    },
-    components: {
-      comment
-    },
-    mounted() {
-      this.getMessages()
-    },
-    methods: {
-      getMessages() {
-        this.$http.get('/website/messagelist').then(res => {
-          this.messageListVo = res.data
-        }).catch(res => {
-            console.log('失败')
-        })
-      }
-    }
-  }
+//  export default {
+//    data() {
+//      return {
+//        messageListVo: {}
+//      }
+//    },
+//    components: {
+//      comment
+//    },
+//    mounted() {
+//      this.getMessages()
+//    },
+//    methods: {
+//      getMessages() {
+//        this.$http.get('/website/messagelist').then(res => {
+//          this.messageListVo = res.data
+//        }).catch(res => {
+//            console.log('失败')
+//        })
+//      }
+//    }
+//  }
 </script>
 <style lang="scss">
   .about-page{

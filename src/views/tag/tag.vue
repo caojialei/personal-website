@@ -1,45 +1,37 @@
 <template>
   <div class="tag-page page">
     <div class="page-content">
-      <!--分类文章名-->
-      <section class="tag-name">
-        <span>标签：</span>
-        <span class="name">{{tagName}}</span>
-      </section>
+      <!--&lt;!&ndash;主体&ndash;&gt;-->
+      <!--<div class="col-main">-->
+        <!--&lt;!&ndash;文章列表&ndash;&gt;-->
+        <!--<article-list></article-list>-->
+      <!--</div>-->
 
-      <!--主体-->
-      <div class="col-main">
-        <!--文章列表-->
-        <article-list></article-list>
-      </div>
+      <!--&lt;!&ndash;侧边栏&ndash;&gt;-->
+      <!--<my-aside></my-aside>-->
 
-      <!--侧边栏-->
-      <my-aside></my-aside>
+      <el-row class="page-content">
+        <el-col :xs="24" :sm="17" class="col-main"><article-list :articleListParams="articleListParams"></article-list></el-col>
+        <el-col :xs="24" :sm="7"><my-aside></my-aside></el-col>
+      </el-row>
     </div>
   </div>
 </template>
 <script>
   import myAside from '../../components/myAside/myAside.vue'
   import articleList from '../../components/articleList/articleList.vue'
-  import {bus} from '../../main.js'
 
   export default {
     data() {
       return {
-        tagName: ''
+        articleListParams: {
+          listType: '标签',
+          pageNo: 1,
+          pageSize: 5,
+          categoryType: 0,
+          tagType: 1
+        }
       }
-    },
-    created() {
-      // 获取不同路由下切换的路由参数
-      this.tagName = this.$route.params.name
-      // 获取同一路由下切换的路由参数
-      bus.$on('name', (name) => {
-        this.tagName = name
-      })
-    },
-    mounted() {
-    },
-    methods: {
     },
     components: {
       myAside,
@@ -48,19 +40,4 @@
   }
 </script>
 <style lang="scss">
-  .tag-page{
-    .tag-name{
-      max-width: 1150px;
-      margin: 0 auto;
-      padding: 36px 16px 18px;
-      /*border-bottom: 1px solid #eee;*/
-      .name{
-        display: inline-block;
-        line-height: 40px;
-        padding: 0 20px;
-        border: 1px solid #e5e9f2;
-        border-radius: 20px;
-      }
-    }
-  }
 </style>
