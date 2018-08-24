@@ -26,11 +26,15 @@
   export default {
     data() {
       return {
+        articleId: '',
         markdownString: '',
         articleDetail: {},
-        comments: {},
-        isFavorite: ''
+        comments: {}
+//        isFavorite: ''
       }
+    },
+    created() {
+      this.articleId = this.$route.params.articleId
     },
     mounted() {
       this.getArticleDetail()
@@ -60,7 +64,7 @@
     methods: {
       // 获取文章
       getArticleDetail() {
-        this.$http.get('/website/article/getArticleDetail').then(res => {
+        this.$http.get('/website/article/getArticleDetail?articleId=' + this.articleId).then(res => {
           // success callback
           this.articleDetail = res.data
           this.getMarkdown(this.articleDetail.content)
@@ -100,7 +104,7 @@
       // 获取文章评论列表
       getComments() {
         this.$http.post('/website/comment/listArticleComments', {
-          'articleId': '123',
+          'articleId': this.articleId,
           'pageNo': '1',
           'pageSize': '5'
         }, { headers: {

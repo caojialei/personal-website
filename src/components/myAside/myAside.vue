@@ -100,7 +100,7 @@
     /*position: absolute;*/
     /*top: 0;*/
     /*right: 15px;*/
-    padding-top: 100px;
+    padding: 100px 0  0 35px;
     section{
       margin: 50px 0;
       h3{

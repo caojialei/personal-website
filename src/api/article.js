@@ -1,5 +1,5 @@
-const express = require('express')
-const apiRoutes = express.Router()
+const express = require('express');
+const apiRoutes = express.Router();
 // const marked = require('marked')
 
 // 获取文章列表
@@ -32,7 +32,7 @@ apiRoutes.post('/website/article/listArticle', (req, res) => {
       }
     }
   )
-})
+});
 
 // 获取文章详情
 apiRoutes.post('/website/article/getArticleDetail', (req, res) => {
@@ -56,7 +56,7 @@ apiRoutes.post('/website/article/getArticleDetail', (req, res) => {
       }
     }
   )
-})
+});
 // // articleDetail
 // apiRoutes.get('/website/articleDetail', (req, res) => {
 //

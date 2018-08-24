@@ -52,10 +52,6 @@
       bus.$on('name', (name) => {
         this.listTypeName = name
       })
-
-//      bus.$on('currentPage', (page) => {
-//        console.log('当前页' + page)
-//      })
     },
     mounted() {
       this.getListArticle()
@@ -112,7 +108,7 @@
   .article-list{
     /*float: left;*/
     margin-top: 80px;
-    padding:0 35px 0 0;
+    padding:0;
     .item{
       margin-bottom: 80px;
       h1{

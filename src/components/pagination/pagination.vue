@@ -14,8 +14,7 @@
   </div>
 </template>
 <script>
-//  import {mapActions} from 'vuex'
-
+  import {bus} from '../../main.js'
   export default {
     props: {
       articleListVo: {
@@ -34,11 +33,10 @@
       },
       // 获取当前页码
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`)
+//        console.log(`当前页: ${val}`)
         this.currentPage = val
-        this.getCurrentPage(val)
+        bus.$emit('currentPage', val)
       }
-//      ...mapActions(['getCurrentPage'])
     }
   }
 </script>

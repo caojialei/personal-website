@@ -12,7 +12,7 @@
 
       <el-row class="page-content">
         <el-col :xs="24" :sm="17" class="col-main"><article-list :articleListParams="articleListParams"></article-list></el-col>
-        <el-col :xs="24" :sm="7"><my-aside></my-aside></el-col>
+        <el-col :xs="24" :sm="7"><keep-alive><my-aside></my-aside></keep-alive></el-col>
       </el-row>
     </div>
   </div>
@@ -20,6 +20,7 @@
 <script>
   import myAside from '../../components/myAside/myAside.vue'
   import articleList from '../../components/articleList/articleList.vue'
+  import {bus} from '../../main.js'
 
   export default {
     data() {
@@ -32,6 +33,11 @@
           tagType: 1
         }
       }
+    },
+    created() {
+      bus.$on('currentPage', (page) => {
+        console.log('标签列表当前页' + page)
+      })
     },
     components: {
       myAside,

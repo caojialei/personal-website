@@ -35,16 +35,19 @@
           <div class="actions">
             <!--二期功能：评论点赞-->
             <!--<span class="iconfont icon-dianzan1"><i v-show="comment.likes_count" @click="doFabulous(comment)">{{comment.likes_count}}人点</i>赞</span>-->
-            <span class="iconfont icon-huifu" @click="doReply(index,'replyC',comment)">回复</span>
+            <span class="iconfont icon-huifu" @click="doReply(index,'replyC',comment)">&nbsp;回复</span>
           </div>
           <section class="reply-container">
-            <div v-for="rItem in comment.replyList" class="item">
-              <p><span class="name">{{rItem.fromUserName}}</span>：<span class="name">@{{rItem.toUserName}}</span> <span>{{rItem.content}}</span></p>
-              <div class="reply-tool">
-                <span class="time">{{rItem.createdAt}}</span>
-                <span class="iconfont icon-huifu" @click="doReply(index,'replyR', rItem)">回复</span>
-              </div>
-            </div>
+            <ul class="reply-list" v-if="comment.replyList.length > 0">
+              <li v-for="rItem in comment.replyList" class="item">
+                <p v-if="rItem.replyType == 1"><span class="name">{{rItem.fromUserName}}：</span><span>{{rItem.content}}</span></p>
+                <p v-else><span class="name">{{rItem.fromUserName}}</span>回复<span class="name">{{rItem.toUserName}}</span>：<span>{{rItem.content}}</span></p>
+                <div class="reply-tool">
+                  <span class="time">{{rItem.createdAt}}</span>
+                  <span class="iconfont icon-huifu" @click="doReply(index,'replyR', rItem)">&nbsp;回复</span>
+                </div>
+              </li>
+            </ul>
             <!--回复评论-->
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm"  label-width="80px" label-position="left" class="reply-ruleForm"  v-if="replyIndex==index">
               <el-form-item label="姓名" prop="name" size="small">
@@ -76,6 +79,7 @@
     },
     data() {
       return {
+        articleId: '',
         commentsList: [], // 评论列表
         replyIndex: -1, // 回复下标
         ruleForm: { // 评论表单校验内容
@@ -106,6 +110,9 @@
         holder: ''
       }
     },
+    created() {
+      this.articleId = this.$route.params.articleId
+    },
     mounted() {
     },
     watch: {
@@ -120,21 +127,21 @@
         this.showCommentsBox = 0
         if (type === 'replyC') {
           // 评论他人评论
-          this.holder = '@' + obj.c_user_name + '：'
+          this.holder = '回复' + obj.userName + '：'
         } else {
           // 评论他人回复
-          this.holder = '@' + obj.r_user_name + '：'
+          this.holder = '回复' + obj.fromUserName + '：'
         }
       },
       // 提交评论
       submitCommentsForm(formName) {
-        console.log('ruleForm' + this.ruleForm)
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$http.post('/website/doComment', {
-              name: this.ruleForm.name,
-              emailAdress: this.ruleForm.emailaddress,
-              comment: this.ruleForm.comment
+            this.$http.post('/website/comment/addComment', {
+              articleId: this.articleId,
+              userName: this.ruleForm.name,
+              email: this.ruleForm.emailaddress,
+              content: this.ruleForm.comment
             }, { headers: {
               // post请求的跨域
               'Content-Type': 'application/x-www-form-urlencoded'
@@ -165,11 +172,11 @@
       // 评论提交成功
       submitSuccess() {
         this.$message('提交成功')
-      },
-      // 点赞评论
-      doFabulous(obj) {
-        console.log(obj.c_user_name)
       }
+      // todo:二期功能 点赞评论
+//      doFabulous(obj) {
+//        console.log(obj.c_user_name)
+//      }
     }
   }
 </script>
@@ -195,6 +202,9 @@
           padding-top: 10px;
           list-style: none;
           border-bottom: 1px solid #f0f0f0;
+          &:last-child{
+            border-bottom: 0;
+          }
           .comment{
             h5{
               font-size: 14px;
@@ -227,23 +237,28 @@
           }
           .reply-container{
             margin-top: 20px;
-            padding: 5px 0 5px 20px;
+            padding-left: 20px;
             border-left: 2px solid #d9d9d9;
-            .item{
-              margin-bottom: 15px;
-              padding-bottom: 15px;
-              border-bottom: 1px dashed #f0f0f0;
-              &:last-child{
-                border: 0;
-              }
-              .name{
-                font-weight: 600;
-              }
-              .reply-tool{
-                span{
-                  font-size: 12px;
-                  color: #969696;
-                  margin-right: 10px;
+            .reply-list{
+
+              .item{
+                margin-bottom: 15px;
+                padding-bottom: 15px;
+                border-bottom: 1px dashed #f0f0f0;
+                &:last-child{
+                  border: 0;
+                  margin-bottom: 0;
+                }
+                .name{
+                  font-weight: 600;
+                }
+                .reply-tool{
+                  margin-top: 5px;
+                  span{
+                    font-size: 12px;
+                    color: #969696;
+                    margin-right: 10px;
+                  }
                 }
               }
             }

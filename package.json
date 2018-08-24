@@ -5,13 +5,14 @@
   "author": "cao.jialei <caojialei0819@163.com>",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0",
     "start": "npm run dev",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
     "axios": "^0.17.0",
+    "express": "^4.16.3",
     "element-ui": "^2.0.1",
     "highlight.js": "^9.12.0",
     "marked": "^0.3.19",
@@ -67,7 +68,8 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "webpack-dev-server": "^2.9.1"
   },
   "engines": {
     "node": ">= 4.0.0",

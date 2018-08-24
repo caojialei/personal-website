@@ -9,6 +9,7 @@ import article from '@/views/article/article'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',  // vue路由去除"#"
   routes: [
     {
       path: '/',
