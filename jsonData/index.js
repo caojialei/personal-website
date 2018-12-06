@@ -17,7 +17,37 @@ exports.getResJson = function (app) {
               'author': '黄志鹏kira',
               'id': '11111',
               'content': 'Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入何时对另一个线程可见',
-              'title': '集合番@LinkedHashSet一文通（1.7版）',
+              'title': '集合番@LinkedHashSet一文通（1.7版）2',
+              'createTime': '2017-07-24T02:53:13.006Z',
+              'updateTime': '2018-03-27T03:18:35.528Z',
+              'tags': [
+                {
+                  'title': 'Java'
+                }
+              ]
+            },
+            {
+              'originalUrl': 'https://www.zybuluo.com/kiraSally/note/825758',
+              'counts': 0,
+              'author': '黄志鹏kira',
+              'id': '11111',
+              'content': 'Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入何时对另一个线程可见',
+              'title': '集合番@LinkedHashSet一文通（1.7版）2',
+              'createTime': '2017-07-24T02:53:13.006Z',
+              'updateTime': '2018-03-27T03:18:35.528Z',
+              'tags': [
+                {
+                  'title': 'Java'
+                }
+              ]
+            },
+            {
+              'originalUrl': 'https://www.zybuluo.com/kiraSally/note/825758',
+              'counts': 0,
+              'author': '黄志鹏kira',
+              'id': '11111',
+              'content': 'Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入Java线程间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入何时对另一个线程可见',
+              'title': '集合番@LinkedHashSet一文通（1.7版）2',
               'createTime': '2017-07-24T02:53:13.006Z',
               'updateTime': '2018-03-27T03:18:35.528Z',
               'tags': [
@@ -67,9 +97,48 @@ exports.getResJson = function (app) {
               'name': '并发番',
               'articleCounts': 242,
               'id': '111'
+            },
+            {
+              'name': '并发番2',
+              'articleCounts': 242,
+              'id': '222'
+            },
+            {
+              'name': '并发番3',
+              'articleCounts': 242,
+              'id': '333'
             }
           ]
 
+        }
+      }
+    )
+  });
+  // listTag
+  // 获取文章标签列表
+  app.get('/website/tag/listTag', function (req, res) {
+    res.json(
+      {
+        'respCode': 0,
+        'respMsg': '操作成功',
+        'data': {
+          'tagList': [
+            {
+                'id':1,
+                'name':'设计模式',
+                'count':11
+            },
+            {
+              'id':2,
+              'name':'设计模式2',
+              'count':22
+            },
+            {
+              'id':3,
+              'name':'设计模式3',
+              'count':33
+            }
+          ]
         }
       }
     )
@@ -111,7 +180,7 @@ exports.getResJson = function (app) {
   });
   // home
   // 作者信息
-  app.get('/website/user/getAuthorDetail', function (req, res) {
+  app.get('/website/user/getAuthorInfo', function (req, res) {
     res.json(
       {
         'respCode': 0,

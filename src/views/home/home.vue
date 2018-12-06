@@ -1,27 +1,9 @@
 <template>
   <div class="home-page page">
-    <!--<el-button>默认按钮</el-button>-->
-    <!--<el-button type="primary">主要按钮</el-button>-->
-    <!--<el-button type="success">成功按钮</el-button>-->
-    <!--<el-button type="info">信息按钮</el-button>-->
-    <!--<el-button type="warning">警告按钮</el-button>-->
-    <!--<el-button type="danger">危险按钮</el-button>-->
-
-    <!--<div class="page-content">-->
-      <!--&lt;!&ndash;主体&ndash;&gt;-->
-      <!--<div class="col-main">-->
-        <!--<article-list></article-list>-->
-      <!--</div>-->
-
-      <!--&lt;!&ndash;侧边栏&ndash;&gt;-->
-      <!--<my-aside></my-aside>-->
-    <!--</div>-->
-
     <el-row class="page-content">
       <el-col :xs="24" :sm="17" class="col-main"><article-list :articleListParams="articleListParams"></article-list></el-col>
       <el-col :xs="24" :sm="7"><my-aside></my-aside></el-col>
     </el-row>
-
   </div>
 </template>
 <script>

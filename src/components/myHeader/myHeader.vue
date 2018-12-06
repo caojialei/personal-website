@@ -103,8 +103,11 @@
 <style lang="scss">
   .my-header{
     height: 80px;
-    position: relative;
+    position: sticky;
+    top: 0;
     border-bottom: 1px solid #f9f9f9;
+    background: #fff;
+    z-index: 1;
     .my-header-container{
       max-width: 1150px;
       margin: 0 auto;
